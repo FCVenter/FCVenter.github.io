@@ -1,7 +1,7 @@
 export default () => (
   <div className="birthdayCard">
     <div className="cardFront">
-      <h3 className="happy">HAPPY Birthday Ma!</h3>
+      <h3 className="happy">HAPPY BIRTHDAY Ma!</h3>
       <div className="balloons">
         <div className="balloonOne" />
         <div className="balloonTwo" />
