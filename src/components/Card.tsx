@@ -16,6 +16,8 @@ const CardContainer = styled.div`
   min-width: 250px;
   max-width: 400px;
 
+  color: ${({ theme }) => theme.colors.background};
+
   @media (max-width: 768px) {
       font-size: 0.9em;
     }

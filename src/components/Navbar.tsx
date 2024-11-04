@@ -5,72 +5,86 @@ import styled from 'styled-components';
 const NavbarContainer = styled.nav`
   position: fixed;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.background};
-  padding: 10px 20px;
+  padding: 10px 0;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+`;
 
-  @media (max-width: 768px) {
-    padding: 10px 15px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px 10px;
-  }
+const BlobBackground = styled.div`
+  background-color: ${({ theme }) => theme.colors.accent};
+  border-radius: 25px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const NavLinks = styled.ul`
   list-style-type: none;
   display: flex;
-  justify-content: center;
   margin: 0;
+  padding: 0;
 
   li {
     margin: 0 15px;
 
-    @media (max-width: 768px) {
-      margin: 0 10px;
-    }
+    a {
+      color: ${({ theme }) => theme.colors.background};
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s;
 
-    @media (max-width: 480px) {
-      margin: 0 5px;
+      &:hover {
+        color: ${({ theme }) => theme.colors.primary};
+      }
     }
-
-    @media (max-width: 768px) {
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 0.8em;
-    }
-  }
-
-  a {
-    color: ${({ theme }) => theme.colors.primary};
-    text-decoration: none;
-    font-weight: bold;
   }
 `;
 
-const Navbar: React.FC = () => (
-  <NavbarContainer>
-    <NavLinks>
-      <li>
-        <a href="#intro">Home</a>
-      </li>
-      <li>
-        <a href="#skills">Skills</a>
-      </li>
-      <li>
-        <a href="#education">Education</a>
-      </li>
-      <li>
-        <a href="#projects">Projects</a>
-      </li>
-      <li>
-        <a href="#contact">Contact</a>
-      </li>
-    </NavLinks>
-  </NavbarContainer>
-);
+const Navbar: React.FC = () => {
+  const handleScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    event.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <NavbarContainer>
+      <BlobBackground>
+        <NavLinks>
+          <li>
+            <a href="#intro" onClick={(e) => handleScroll(e, 'intro')}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#skills" onClick={(e) => handleScroll(e, 'skills')}>
+              Skills
+            </a>
+          </li>
+          <li>
+            <a href="#education" onClick={(e) => handleScroll(e, 'education')}>
+              Education
+            </a>
+          </li>
+          <li>
+            <a href="#projects" onClick={(e) => handleScroll(e, 'projects')}>
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="#contact" onClick={(e) => handleScroll(e, 'contact')}>
+              Contact
+            </a>
+          </li>
+        </NavLinks>
+      </BlobBackground>
+    </NavbarContainer>
+  );
+};
 
 export default Navbar;

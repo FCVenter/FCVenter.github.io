@@ -6,21 +6,27 @@ import ProjectCard from '../components/ProjectCard';
 const ProjectsContainer = styled.section`
   padding: 50px 20px;
   background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.background};
 `;
 
 const ProjectsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; // Adds space between cards
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
   }
+
+  
 `;
+
 
 const Heading = styled.h2`
   text-align: center;
+
 `;
 
 const SubHeading = styled.h3`

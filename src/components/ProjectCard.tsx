@@ -25,6 +25,8 @@ const ProjectContainer = styled.div`
   @media (max-width: 480px) {
     max-width: 100%;
     margin: 10px;
+
+  
   }
 `;
 
@@ -39,17 +41,19 @@ const ProjectTitle = styled.h3`
 const TechList = styled.ul`
   list-style-type: disc;
   padding-left: 20px;
+  
 `;
 
 const FeatureList = styled.ul`
   list-style-type: circle;
   padding-left: 20px;
+  
 `;
 
 const LearnMoreButton = styled.a`
   display: inline-block;
   background-color: ${({ theme }) => theme.colors.secondary};
-  color: #fff;
+  color: ${({ theme }) => theme.colors.primary};
   padding: 10px 15px;
   border-radius: 5px;
   margin-top: 10px;

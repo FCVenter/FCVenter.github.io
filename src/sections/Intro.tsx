@@ -34,11 +34,17 @@ const NameTitle = styled.h1`
 `;
 
 const DownloadCVButton = styled.a`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.accent};
   color: #000;
   padding: 15px 25px;
   border-radius: 5px;
   font-size: 1.2em;
+
+  transition: color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.primary};
+      }
 
   @media (max-width: 768px) {
     padding: 12px 20px;
@@ -54,8 +60,8 @@ const DownloadCVButton = styled.a`
 const Intro: React.FC = () => (
   <IntroContainer>
     <NameTitle>FC Venter</NameTitle>
-    <DownloadCVButton href={CV} download>
-      Download My CV
+    <DownloadCVButton href={CV} target="_blank" >
+      View My CV
     </DownloadCVButton>
   </IntroContainer>
 );
