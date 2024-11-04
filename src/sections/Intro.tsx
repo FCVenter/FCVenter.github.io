@@ -2,27 +2,45 @@
 import React from 'react';
 import styled from 'styled-components';
 import CV from '../assets/FC Venter CV 2024.pdf'; // Replace with your CV path
+import backGroundImage from '../assets/mbr-2-1920x1280.jpg';
+import Parallax from '../components/Parallax';
 
-const IntroContainer = styled.section`
-  background-image: url('../Assets/Me.jpg');
-  background-attachment: fixed;
-  background-size: cover;
+const IntroSection = styled.section`
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  overflow: hidden;
+`;
+
+const IntroContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding: 100px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Optional: Add a semi-transparent background for better text visibility */
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
 
   @media (max-width: 768px) {
-    padding: 80px 15px;
-    background-attachment: scroll;
+    padding: 15px;
   }
 
   @media (max-width: 480px) {
-    padding: 60px 10px;
+    padding: 10px;
   }
 `;
 
 const NameTitle = styled.h1`
   font-size: 3em;
   margin-bottom: 20px;
+  color: #fff; /* Ensure text is visible over the background image */
 
   @media (max-width: 768px) {
     font-size: 2.5em;
@@ -39,12 +57,14 @@ const DownloadCVButton = styled.a`
   padding: 15px 25px;
   border-radius: 5px;
   font-size: 1.2em;
+  text-decoration: none;
 
-  transition: color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 
-      &:hover {
-        color: ${({ theme }) => theme.colors.primary};
-      }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
+  }
 
   @media (max-width: 768px) {
     padding: 12px 20px;
@@ -58,12 +78,15 @@ const DownloadCVButton = styled.a`
 `;
 
 const Intro: React.FC = () => (
-  <IntroContainer>
-    <NameTitle>FC Venter</NameTitle>
-    <DownloadCVButton href={CV} target="_blank" >
-      View My CV
-    </DownloadCVButton>
-  </IntroContainer>
+  <IntroSection>
+    <Parallax src={backGroundImage} alt="FC Venter parallax background" />
+    <IntroContainer>
+      <NameTitle>FC Venter</NameTitle>
+      <DownloadCVButton href={CV} target="_blank" rel="noopener noreferrer">
+        View My CV
+      </DownloadCVButton>
+    </IntroContainer>
+  </IntroSection>
 );
 
 export default Intro;

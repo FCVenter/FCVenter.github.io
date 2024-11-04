@@ -31,10 +31,13 @@ const Skills: React.FC = () => (
         title="Languages"
         content={
           <ul>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
             <li>Python</li>
-            {/* Add all languages */}
+            <li>C#</li>
+            <li>C/C++</li>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>Pascal</li>
+            <li>CSS/HTML</li>
           </ul>
         }
       />
@@ -43,9 +46,13 @@ const Skills: React.FC = () => (
         content={
           <ul>
             <li>React</li>
-            <li>Node.js</li>
-            <li>Express.js</li>
-            {/* Add all frameworks */}
+            <li>Angular</li>
+            <li>ASP.NET</li>
+            <li>React Native</li>
+            <li>Flutter</li>
+            <li>Bootstrap</li>
+            <li>Tailwind</li>
+            <li>PyTest</li>
           </ul>
         }
       />
@@ -53,10 +60,14 @@ const Skills: React.FC = () => (
         title="Technologies"
         content={
           <ul>
+            <li>PostgreSQL</li>
+            <li>SQL Server</li>
             <li>Docker</li>
+            <li>GitLab CI</li>
             <li>Azure</li>
-            <li>Firebase</li>
-            {/* Add all technologies */}
+            <li>Git/GitHub</li>
+            <li>Qiskit</li>
+            <li>TensorFlow</li>
           </ul>
         }
       />
@@ -64,10 +75,16 @@ const Skills: React.FC = () => (
         title="Soft Skills"
         content={
           <ul>
-            <li>Team Leadership</li>
-            <li>Communication</li>
             <li>Problem-Solving</li>
-            {/* Add all soft skills */}
+            <li>Communication</li>
+            <li>Teamwork</li>
+            <li>Adaptability</li>
+            <li>Time management</li>
+            <li>Attention to Detail</li>
+            <li>Creativity</li>
+            <li>Critical Thinking</li>
+            <li>Patience and Perseverance</li>
+            <li>Empathy</li>
           </ul>
         }
       />

@@ -12,7 +12,7 @@ const NavbarContainer = styled.nav`
 `;
 
 const BlobBackground = styled.div`
-  background-color: ${({ theme }) => theme.colors.accent};
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 25px;
   padding: 10px 20px;
   display: flex;
@@ -37,7 +37,7 @@ const NavLinks = styled.ul`
       transition: color 0.3s;
 
       &:hover {
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${({ theme }) => theme.colors.accent};
       }
     }
   }

@@ -47,7 +47,8 @@ const TechList = styled.ul`
 const FeatureList = styled.ul`
   list-style-type: circle;
   padding-left: 20px;
-  
+  color: ${({ theme }) => theme.colors.background};
+
 `;
 
 const LearnMoreButton = styled.a`
@@ -57,6 +58,12 @@ const LearnMoreButton = styled.a`
   padding: 10px 15px;
   border-radius: 5px;
   margin-top: 10px;
+
+  transition: color 0.3s;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.background};
+      }
 `;
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
