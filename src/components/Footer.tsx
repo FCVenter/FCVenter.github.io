@@ -1,17 +1,25 @@
 // src/components/Footer.tsx
 import React from 'react';
 import styled from 'styled-components';
+import FlexContainer from './styled/Container';
+import Text from './styled/Typography';
 
-const FooterContainer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: #fff;
+const FooterContainer = styled(FlexContainer)`
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.background};
   text-align: center;
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing.large};
+  flex-direction: column;
+  align-items: center;
+`;
+
+const FooterText = styled(Text).attrs({ variant: 'p' })`
+  color: ${({ theme }) => theme.colors.background};
 `;
 
 const Footer: React.FC = () => (
-  <FooterContainer>
-    <p>&copy; {new Date().getFullYear()} FC Venter. All rights reserved.</p>
+  <FooterContainer as="footer">
+    <FooterText>&copy; {new Date().getFullYear()} FC Venter. All rights reserved.</FooterText>
   </FooterContainer>
 );
 

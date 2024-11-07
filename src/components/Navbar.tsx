@@ -1,25 +1,44 @@
 // src/components/Navbar.tsx
 import React from 'react';
 import styled from 'styled-components';
+import FlexContainer from './styled/Container';
+import NavLink from './styled/NavLink';
 
-const NavbarContainer = styled.nav`
+// Navbar Container
+const NavbarContainer = styled(FlexContainer)`
   position: fixed;
+  top: 0;
   width: 100%;
-  padding: 10px 0;
+  padding: 1.2rem 2.4rem; /* 19.2px 38.4px */
   z-index: 1000;
-  display: flex;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const BlobBackground = styled.div`
+// Blob Background
+const BlobBackground = styled(FlexContainer)`
   background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 25px;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 1.5rem; /* 24px */
+  padding: 0.75rem 1.5rem; /* 12px 24px */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 1rem 2rem; /* 16px 32px */
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+    padding: 1.25rem 2.5rem; /* 20px 40px */
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 1.5rem 3rem; /* 24px 48px */
+  }
 `;
 
+// Navigation Links Container
 const NavLinks = styled.ul`
   list-style-type: none;
   display: flex;
@@ -27,59 +46,87 @@ const NavLinks = styled.ul`
   padding: 0;
 
   li {
-    margin: 0 15px;
+    margin: 0 0.75rem; /* 12px */
+  }
 
-    a {
-      color: ${({ theme }) => theme.colors.background};
-      text-decoration: none;
-      font-weight: bold;
-      position: relative;
-      transition: color 0.3s;
+  /* Responsive Font Sizes */
+  font-size: 1.2rem;
 
-      &:hover {
-        color: ${({ theme }) => theme.colors.accent};
-      }
-    }
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 1.4rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+    font-size: 1.6rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 1.8rem;
   }
 `;
 
 const Navbar: React.FC = () => {
-  const handleScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleScroll = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
+      // Optionally, update the URL hash without jumping
+      window.history.pushState(null, '', `#${targetId}`);
     }
   };
 
   return (
-    <NavbarContainer>
+    <NavbarContainer aria-label="Main Navigation">
       <BlobBackground>
         <NavLinks>
           <li>
-            <a href="#intro" onClick={(e) => handleScroll(e, 'intro')}>
+            <NavLink
+              href="#intro"
+              onClick={(e) => handleScroll(e, 'intro')}
+              aria-label="Navigate to Home section"
+            >
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#skills" onClick={(e) => handleScroll(e, 'skills')}>
+            <NavLink
+              href="#skills"
+              onClick={(e) => handleScroll(e, 'skills')}
+              aria-label="Navigate to Skills section"
+            >
               Skills
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#education" onClick={(e) => handleScroll(e, 'education')}>
+            <NavLink
+              href="#education"
+              onClick={(e) => handleScroll(e, 'education')}
+              aria-label="Navigate to Education section"
+            >
               Education
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#projects" onClick={(e) => handleScroll(e, 'projects')}>
+            <NavLink
+              href="#projects"
+              onClick={(e) => handleScroll(e, 'projects')}
+              aria-label="Navigate to Projects section"
+            >
               Projects
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#contact" onClick={(e) => handleScroll(e, 'contact')}>
+            <NavLink
+              href="#contact"
+              onClick={(e) => handleScroll(e, 'contact')}
+              aria-label="Navigate to Contact section"
+            >
               Contact
-            </a>
+            </NavLink>
           </li>
         </NavLinks>
       </BlobBackground>

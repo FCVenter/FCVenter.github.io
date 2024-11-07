@@ -2,24 +2,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
+import Text from '../components/styled/Typography';
 
 const EducationContainer = styled.section`
-  padding: 50px 20px;
+  padding: ${({ theme }) => theme.spacing.xLarge} ${({ theme }) => theme.spacing.medium};
+  background-color: ${({ theme }) => theme.colors.background};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: ${({ theme }) => theme.spacing.large} ${({ theme }) => theme.spacing.small};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.medium} ${({ theme }) => theme.spacing.small};
+  }
+`;
+
+const Heading = styled(Text).attrs({ variant: 'h2' })`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing.large};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const CardsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const Heading = styled.h2`
-  text-align: center;
 `;
 
 const Education: React.FC = () => (
@@ -30,8 +37,8 @@ const Education: React.FC = () => (
         title="B.Sc in Information Technology"
         content={
           <>
-            <p>North-West University</p>
-            <p>2022-2024</p>
+            <Text>North-West University</Text>
+            <Text>2022-2024</Text>
           </>
         }
       />
@@ -39,8 +46,8 @@ const Education: React.FC = () => (
         title="B.Sc in Computer Science and Information Systems"
         content={
           <>
-            <p>North-West University</p>
-            <p>2025</p>
+            <Text>North-West University</Text>
+            <Text>2025</Text>
           </>
         }
       />
@@ -48,8 +55,8 @@ const Education: React.FC = () => (
         title="QBronze Quantum Computing Diploma"
         content={
           <>
-            <p>QBronze</p>
-            <p>2023</p>
+            <Text>QBronze</Text>
+            <Text>2023</Text>
           </>
         }
       />

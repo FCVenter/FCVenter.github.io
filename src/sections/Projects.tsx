@@ -2,47 +2,43 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProjectCard from '../components/ProjectCard';
+import Text from '../components/styled/Typography';
 
 const ProjectsContainer = styled.section`
-  padding: 50px 20px;
+  padding: ${({ theme }) => theme.spacing.xLarge} ${({ theme }) => theme.spacing.medium};
   background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.background};
+
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: ${({ theme }) => theme.spacing.large} ${({ theme }) => theme.spacing.small};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.medium} ${({ theme }) => theme.spacing.small};
+  }
+`;
+
+const Heading = styled(Text).attrs({ variant: 'h2' })`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing.medium};
+  color: ${({ theme }) => theme.colors.primary};
+
+`;
+
+const SubHeading = styled(Text).attrs({ variant: 'h3' })`
+  text-align: center;
+  margin-top: ${({ theme }) => theme.spacing.xLarge};
+  margin-bottom: ${({ theme }) => theme.spacing.medium};
+  color: ${({ theme }) => theme.colors.secondary};
+
 `;
 
 const ProjectsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  & > * {
-    flex: 1 1 calc(30% - 40px);
-    margin: 20px;
-  }
-
-  @media (max-width: 1024px) {
-    & > * {
-      flex: 1 1 calc(30% - 40px);
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-
-    & > * {
-      flex: 1 1 100%;
-      margin: 15px 0;
-    }
-  }
-`;
-
-
-const Heading = styled.h2`
-  text-align: center;
-`;
-
-const SubHeading = styled.h3`
-  text-align: center;
+  color: ${({ theme }) => theme.colors.background};
+  
 `;
 
 const Projects: React.FC = () => (

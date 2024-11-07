@@ -1,6 +1,9 @@
 // src/components/ProjectCard.tsx
 import React from 'react';
 import styled from 'styled-components';
+import Text from './styled/Typography';
+import Button from './styled/Button';
+import FlexContainer from './styled/Container';
 
 interface ProjectCardProps {
   name: string;
@@ -9,61 +12,61 @@ interface ProjectCardProps {
   githubLink?: string;
 }
 
+
+
 const ProjectContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.accent};
-  border-radius: 15px;
-  padding: 20px;
-  margin: 20px;
-  max-width: 600px;
+  border-radius: 0.9375rem; /* 15px */
+  padding: ${({ theme }) => theme.spacing.large};
+  margin: ${({ theme }) => theme.spacing.medium};
+  max-width: 37.5rem; /* 600px */
   flex: 1;
 
-  @media (max-width: 768px) {
-    max-width: 80%;
-    margin: 15px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-width: 24rem; /* 384px */
+    margin: ${({ theme }) => theme.spacing.medium};
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     max-width: 100%;
-    margin: 10px;
-
-  
+    margin: ${({ theme }) => theme.spacing.small} 0;
   }
 `;
 
-const ProjectTitle = styled.h3`
-  margin-top: 0;
-
-  @media (max-width: 480px) {
-    font-size: 1.5em;
-  }
+const ProjectTitle = styled(Text).attrs({ variant: 'h3' })`
+  margin-bottom: ${({ theme }) => theme.spacing.medium};
+  color: ${({theme}) => theme.colors.background}
 `;
 
-const TechList = styled.ul`
+const List = styled.ul`
   list-style-type: disc;
-  padding-left: 20px;
-  
+  padding-left: 1.25rem; /* 20px */
+  margin-bottom: ${({ theme }) => theme.spacing.medium};
 `;
 
-const FeatureList = styled.ul`
-  list-style-type: circle;
-  padding-left: 20px;
-  color: ${({ theme }) => theme.colors.background};
-
-`;
-
-const LearnMoreButton = styled.a`
-  display: inline-block;
-  background-color: ${({ theme }) => theme.colors.secondary};
+const LearnMoreButton = styled(Button)`
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  font-size: ${({ theme }) => theme.fontSizes.mobile};
+  background-color: ${({ theme }) => theme.colors.accent};
   color: ${({ theme }) => theme.colors.primary};
-  padding: 10px 15px;
-  border-radius: 5px;
-  margin-top: 10px;
 
-  transition: color 0.3s;
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.background};
+  }
 
-      &:hover {
-        color: ${({ theme }) => theme.colors.background};
-      }
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: ${({ theme }) => theme.fontSizes.tablet};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+    font-size: ${({ theme }) => theme.fontSizes.laptop};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: ${({ theme }) => theme.fontSizes.desktop};
+  }
 `;
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -74,20 +77,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => (
   <ProjectContainer>
     <ProjectTitle>{name}</ProjectTitle>
-    <h4>Technologies Used:</h4>
-    <TechList>
+    <Text variant="h4">Technologies Used:</Text>
+    <List>
       {technologies.map((tech) => (
         <li key={tech}>{tech}</li>
       ))}
-    </TechList>
-    <h4>Features:</h4>
-    <FeatureList>
+    </List>
+    <Text variant="h4">Features:</Text>
+    <List>
       {features.map((feature) => (
         <li key={feature}>{feature}</li>
       ))}
-    </FeatureList>
+    </List>
     {githubLink && (
-      <LearnMoreButton href={githubLink} target="_blank" rel="noopener noreferrer">
+      <LearnMoreButton
+        as="a"
+        href={githubLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="secondary"
+        aria-label={`Learn more about ${name}`}
+      >
         Learn More
       </LearnMoreButton>
     )}

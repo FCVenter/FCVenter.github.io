@@ -2,89 +2,86 @@
 import React from 'react';
 import styled from 'styled-components';
 import CV from '../assets/FC Venter CV 2024.pdf'; // Replace with your CV path
-import backGroundImage from '../assets/mbr-2-1920x1280.jpg';
-import Parallax from '../components/Parallax';
+import backGroundImage from '../assets/noctua.jpg';
+import Text from '../components/styled/Typography';
+import Button from '../components/styled/Button';
+import FlexContainer from '../components/styled/Container';
 
 const IntroSection = styled.section`
   position: relative;
   height: 100vh; /* Full viewport height */
   width: 100%;
   overflow: hidden;
+  
+  /* Parallax Background */
+  background-image: url(${backGroundImage});
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* Overlay to enhance text readability */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Adjust opacity as needed */
+    z-index: 1;
+  }
+  
+  /* Disable parallax on mobile devices */
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    background-attachment: scroll;
+  }
 `;
 
-const IntroContainer = styled.div`
+const IntroContainer = styled(FlexContainer)`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
 
-  display: flex;
   flex-direction: column;
   align-items: center;
 
-  /* Optional: Add a semi-transparent background for better text visibility */
+  /* Semi-transparent background for better text visibility */
   background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 10px;
+  padding: ${({ theme }) => theme.spacing.large};
+  border-radius: 0.625rem; /* 10px */
+  z-index: 2; /* Ensure it sits above the overlay */
 
-  @media (max-width: 768px) {
-    padding: 15px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: ${({ theme }) => theme.spacing.medium};
   }
 
-  @media (max-width: 480px) {
-    padding: 10px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: ${({ theme }) => theme.spacing.small};
   }
 `;
 
-const NameTitle = styled.h1`
-  font-size: 3em;
-  margin-bottom: 20px;
+const NameTitle = styled(Text).attrs({ variant: 'h1' })`
+  margin-bottom: ${({ theme }) => theme.spacing.medium};
   color: #fff; /* Ensure text is visible over the background image */
-
-  @media (max-width: 768px) {
-    font-size: 2.5em;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 2em;
-  }
-`;
-
-const DownloadCVButton = styled.a`
-  background-color: ${({ theme }) => theme.colors.accent};
-  color: #000;
-  padding: 15px 25px;
-  border-radius: 5px;
-  font-size: 1.2em;
-  text-decoration: none;
-
-  transition: background-color 0.3s, color 0.3s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    padding: 12px 20px;
-    font-size: 1em;
-  }
-
-  @media (max-width: 480px) {
-    padding: 10px 15px;
-    font-size: 0.9em;
-  }
 `;
 
 const Intro: React.FC = () => (
   <IntroSection>
-    <Parallax src={backGroundImage} alt="FC Venter parallax background" />
     <IntroContainer>
       <NameTitle>FC Venter</NameTitle>
-      <DownloadCVButton href={CV} target="_blank" rel="noopener noreferrer">
+      <Button
+        as="a"
+        href={CV}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="accent"
+        aria-label="View my CV"
+      >
         View My CV
-      </DownloadCVButton>
+      </Button>
     </IntroContainer>
   </IntroSection>
 );

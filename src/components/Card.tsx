@@ -1,6 +1,7 @@
 // src/components/Card.tsx
 import React from 'react';
 import styled from 'styled-components';
+import Text from './styled/Typography';
 
 interface CardProps {
   title: string;
@@ -9,36 +10,36 @@ interface CardProps {
 
 const CardContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.accent};
-  border-radius: 15px;
-  padding: 20px;
-  margin: 20px;
+  border-radius: 0.9375rem; /* 15px */
+  padding: ${({ theme }) => theme.spacing.large};
+  margin: ${({ theme }) => theme.spacing.medium};
   flex: 1;
-  min-width: 250px;
-  max-width: 400px;
+  min-width: 15.625rem; /* 250px */
+  max-width: 25rem;     /* 400px */
 
   color: ${({ theme }) => theme.colors.background};
 
-  @media (max-width: 768px) {
-      font-size: 0.9em;
-    }
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 0.9em;
+  }
 
-  @media (max-width: 480px) {
-      font-size: 0.8em;
-    }
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 0.8em;
+  }
 `;
 
-const CardTitle = styled.h3`
-  margin-top: 0;
+const CardTitle = styled(Text).attrs({ variant: 'h3' })`
+  margin-bottom: ${({ theme }) => theme.spacing.medium};
+`;
 
-  @media (max-width: 480px) {
-    font-size: 1.5em;
-  }
+const ContentWrapper = styled.div`
+  /* Additional styling if needed */
 `;
 
 const Card: React.FC<CardProps> = ({ title, content }) => (
   <CardContainer>
     <CardTitle>{title}</CardTitle>
-    {content}
+    <ContentWrapper>{content}</ContentWrapper>
   </CardContainer>
 );
 
