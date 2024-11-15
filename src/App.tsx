@@ -1,40 +1,32 @@
-// src/App.tsx
-import React, { useContext } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './styles/theme'; // Adjusted import path based on standard structure
-import { GlobalStyles } from './styles/GlobalStyles'; // Adjusted import path
-import Navbar from './components/Navbar';
-import Intro from './sections/Intro';
-import Skills from './sections/Skills';
-import Education from './sections/Education';
-import Projects from './sections/Projects';
-import Socials from './sections/Socials';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@rewind-ui/core';
+import { FaSun, FaMoon } from 'react-icons/fa';
+import HeroSection from './components/HeroSection';
+import SkillsSection from './components/SkillsSection';
+import ProjectsSection from './components/ProjectsSection';
+import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
-import { TransparencyProvider, TransparencyContext } from './contexts/TransparencyContext';
-import styled from 'styled-components';
+import EducationSection from './components/EducationSection';
 
-const AppContent: React.FC = () => {
+const App = () => {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 
   return (
-    <>
-      <GlobalStyles />
-      <Navbar />
-      <Intro />
-      <Skills />
-      <Education />
-      <Projects />
-      <Socials />
+    <div className="min-h-screen transition-colors duration-300">
+      <HeroSection theme={theme} toggleTheme={toggleTheme} />
+      <SkillsSection />
+      <EducationSection />
+      <ProjectsSection />
+      <ContactSection />
       <Footer />
-    </>
+    </div>
   );
 };
-
-const App: React.FC = () => (
-  <ThemeProvider theme={theme}>
-    <TransparencyProvider>
-      <AppContent />
-    </TransparencyProvider>
-  </ThemeProvider>
-);
 
 export default App;
