@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.9c755f90.js",
-    "static/media/FC Venter CV 2024.pdf": "/static/media/FC Venter CV 2024.275e78dbfcfa9cbcffc8.pdf",
-    "static/media/noctua.jpg": "/static/media/noctua.d0136efb101e0d38f36f.jpg",
-    "static/media/keyboard.jpg": "/static/media/keyboard.75a4fc2fc4aa2ffb8f0c.jpg",
-    "static/media/ram.jpg": "/static/media/ram.cfe7d24ba204c2e2b503.jpg",
+    "main.css": "/static/css/main.98e5d7a5.css",
+    "main.js": "/static/js/main.e0002988.js",
     "index.html": "/index.html",
-    "main.9c755f90.js.map": "/static/js/main.9c755f90.js.map"
+    "main.98e5d7a5.css.map": "/static/css/main.98e5d7a5.css.map",
+    "main.e0002988.js.map": "/static/js/main.e0002988.js.map"
   },
   "entrypoints": [
-    "static/js/main.9c755f90.js"
+    "static/css/main.98e5d7a5.css",
+    "static/js/main.e0002988.js"
   ]
 }
