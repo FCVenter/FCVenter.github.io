@@ -9,11 +9,11 @@ const educationData = [
   {
     degree: "B.Sc Hons in Computer Science and Information Systems",
     institution: "North-West University",
-    years: "2025",
+    years: "CURRENT (2025)",
   },
   {
     degree: "QBronze Quantum Computing Diploma",
-    institution: "QBronze",
+    institution: "Q World",
     years: "2023",
   },
 ];

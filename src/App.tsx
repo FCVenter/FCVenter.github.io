@@ -30,8 +30,8 @@ const App = () => {
       <HeroSection theme={theme} toggleTheme={toggleTheme} />
 
       <Tabs
-        // defaultTab="Portfolio-tab"
-        defaultTab="About-me-tab"
+        defaultTab="Portfolio-tab"
+        // defaultTab="About-me-tab"
         color="purple"
         fullWidth={true}
         className="p-4"
@@ -65,7 +65,7 @@ const App = () => {
             <GallerySection theme={theme}/>
             <HobbiesSection theme={theme}/>
             <SkillsChart theme={theme} />
-            <RoadmapSection theme={theme}/>
+            {/* <RoadmapSection theme={theme}/> */}
             <CaseStudiesSection theme={theme}/>
             <FeedbackSection theme={theme}/>
           </div>

@@ -68,7 +68,7 @@ const GallerySection = ({ theme }: GallerySectionProps) => {
         onMouseDown={handleMouseDown}
         style={{ cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }} // Change cursor on drag and prevent text selection
       >
-        {[...Array(3)].map((_, index) => (
+        {[...Array(5)].map((_, index) => (
           <Card
             key={index}
             className={`rounded-lg overflow-hidden border-none ${classes.shadow} ${classes.transition}`}

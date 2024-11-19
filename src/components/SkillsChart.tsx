@@ -32,12 +32,14 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
 
   return (
     <section className="skills p-8">
-      <h2 className={`text-3xl font-semibold mb-6 text-center ${textColor}`}>Skills</h2>
+      <h2 className={`text-3xl font-semibold mb-6 text-center ${textColor}`}>
+        Skills
+      </h2>
       <div className="space-y-6">
         {skills.map((skill) => (
           <div
             key={skill.name}
-            className="flex flex-col sm:flex-row items-center sm:items-center space-y-2 sm:space-y-0 sm:space-x-4"
+            className="text-2xl flex flex-col sm:flex-row items-center sm:items-center space-y-2 sm:space-y-0 sm:space-x-4"
           >
             {/* Skill Name */}
             <div className="w-full sm:w-1/3 text-left">
@@ -63,7 +65,7 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
 
             {/* Skill Level */}
             <div className="w-full sm:w-1/6 text-left sm:text-right">
-              <span className={`text-sm font-medium ${mutedTextColor}`}>
+              <span className={`text-xl font-medium ${mutedTextColor}`}>
                 {skill.level}
               </span>
             </div>
