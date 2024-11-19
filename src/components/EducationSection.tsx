@@ -18,13 +18,18 @@ const educationData = [
   },
 ];
 
-const EducationSection = () => (
+interface EducationSectionProps {
+  theme: 'dark' | 'light'; // Define theme prop
+}
+
+const EducationSection = ({ theme }: EducationSectionProps) => (
   <section className="education p-8 text-center">
     <h2 className="text-3xl font-semibold mb-6">Education</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {educationData.map((edu, index) => (
-        <EducationCard 
+        <EducationCard
           key={index}
+          theme={theme} // Pass theme explicitly to the card
           degree={edu.degree}
           institution={edu.institution}
           years={edu.years}
