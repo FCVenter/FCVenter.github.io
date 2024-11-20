@@ -28,7 +28,7 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => (
     {/* Button to open CV in a new tab */}
     <Button
       as="a"
-      href="/assets/CV.pdf"
+      href="/assets/documents/CV.pdf"
       target="_blank"
       rel="noopener noreferrer"
       variant="primary"
