@@ -1,4 +1,5 @@
-import EducationCard from './EducationCard';
+import { getThemeClasses } from "../theme/themeConfig";
+import EducationCard from "./EducationCard";
 
 const educationData = [
   {
@@ -19,24 +20,34 @@ const educationData = [
 ];
 
 interface EducationSectionProps {
-  theme: 'dark' | 'light'; // Define theme prop
+  theme: "dark" | "light";
 }
 
-const EducationSection = ({ theme }: EducationSectionProps) => (
-  <section className="education p-8 text-center">
-    <h2 className="text-3xl font-semibold mb-6">Education</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {educationData.map((edu, index) => (
-        <EducationCard
-          key={index}
-          theme={theme} // Pass theme explicitly to the card
-          degree={edu.degree}
-          institution={edu.institution}
-          years={edu.years}
-        />
-      ))}
-    </div>
-  </section>
-);
+const EducationSection = ({ theme }: EducationSectionProps) => {
+  const classes = getThemeClasses(theme);
+
+  return (
+    <section
+      className={`education ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
+    >
+      <h2
+        className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large}`}
+      >
+        Education
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {educationData.map((edu, index) => (
+          <EducationCard
+            key={index}
+            theme={theme}
+            degree={edu.degree}
+            institution={edu.institution}
+            years={edu.years}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default EducationSection;

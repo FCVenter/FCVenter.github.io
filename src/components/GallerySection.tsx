@@ -1,18 +1,34 @@
-import { useRef, useState, useEffect } from 'react';
-import { Card } from '@rewind-ui/core';
-import { getThemeClasses } from '../theme/themeConfig';
+import React, { useRef, useState, useEffect } from "react";
+// @ts-ignore
+import * as __WebpackModuleApi from 'webpack-module-api';
+import { Card } from "@rewind-ui/core";
+import { getThemeClasses } from "../theme/themeConfig";
 
 interface GallerySectionProps {
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
 }
+
+// Function to import all images from the gallery folder
+const importAll = (r: __WebpackModuleApi.RequireContext) =>
+  r.keys().map((item: any) => r(item).default);
+
+// Import images regardless of type or name
+const images = importAll(
+  require.context("../assets/gallery", false, /\.(png|jpe?g|svg)$/)
+);
 
 const GallerySection = ({ theme }: GallerySectionProps) => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState<{ x: number; scrollLeft: number }>({
-    x: 0,
-    scrollLeft: 0,
-  });
+  const [dragStart, setDragStart] = useState<{ x: number; scrollLeft: number }>(
+    {
+      x: 0,
+      scrollLeft: 0,
+    }
+  );
+  const [orientation, setOrientation] = useState<"portrait" | "landscape">(
+    "portrait"
+  );
 
   const classes = getThemeClasses(theme);
 
@@ -45,42 +61,54 @@ const GallerySection = ({ theme }: GallerySectionProps) => {
 
   useEffect(() => {
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
     } else {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
     }
 
     // Cleanup on unmount
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, dragStart]);
 
   return (
-    <section className="gallery p-8">
-      <h2 className={`text-3xl font-semibold mb-4 text-center  ${classes.text}`}>Gallery</h2>
+    <section className={`gallery ${classes.spacing.padding.extraLarge}`}>
+      <h2
+        className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.medium} ${classes.typography.textAlignCenter} ${classes.text}`}
+      >
+        Gallery
+      </h2>
+      <button
+        onClick={() =>
+          setOrientation(orientation === "portrait" ? "landscape" : "portrait")
+        }
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Switch to {orientation === "portrait" ? "Landscape" : "Portrait"}
+      </button>
       <div
         ref={galleryRef}
-        className="overflow-x-auto flex space-x-4 no-scrollbar cursor-grab px-4"
+        className={`overflow-x-auto flex ${classes.spacing.spaceX.medium} no-scrollbar cursor-grab ${classes.spacing.paddingX.medium}`}
         onMouseDown={handleMouseDown}
-        style={{ cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }} // Change cursor on drag and prevent text selection
+        style={{ cursor: isDragging ? "grabbing" : "grab", userSelect: "none" }}
       >
-        {[...Array(5)].map((_, index) => (
+        {images.map((imageSrc: string, index: React.Key | null | undefined) => (
           <Card
             key={index}
-            className={`rounded-lg overflow-hidden border-none ${classes.shadow} ${classes.transition}`}
+            className={`${classes.spacing.rounded.large} overflow-hidden border-none ${classes.shadow} ${classes.transition}`}
             style={{
-              width: '300px', // Set explicit width for the card
-              height: '400px', // Set explicit height for the card
-              flexShrink: 0, // Prevent cards from shrinking
+              width: orientation === "portrait" ? "300px" : "400px",
+              height: orientation === "portrait" ? "400px" : "300px",
+              flexShrink: 0,
             }}
           >
             <Card.Image
-              src={`/assets/gallery/image${index + 1}.jpg`}
-              alt={`Gallery Image ${index + 1}`}
+              src={imageSrc}
+              alt={`Gallery Image ${(index as number) + 1}`}
               mode={theme}
               className="object-cover w-full h-full"
             />

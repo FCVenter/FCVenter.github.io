@@ -1,7 +1,7 @@
-import { getThemeClasses } from '../theme/themeConfig';
+import { getThemeClasses } from "../theme/themeConfig";
 
 interface FooterProps {
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
 }
 
 const Footer = ({ theme }: FooterProps) => {
@@ -9,9 +9,11 @@ const Footer = ({ theme }: FooterProps) => {
 
   return (
     <footer
-      className={`footer p-4 text-center ${classes.background} ${classes.text}`}
+      className={`footer ${classes.spacing.padding.medium} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
     >
-      <p>© 2024 FC Venter. All rights reserved.</p>
+      <p className={`${classes.textSizes.body}`}>
+        © 2024 FC Venter. All rights reserved.
+      </p>
     </footer>
   );
 };

@@ -1,24 +1,36 @@
-import { Card } from '@rewind-ui/core';
-import { getThemeClasses } from '../theme/themeConfig';
+import { Card } from "@rewind-ui/core";
+import { getThemeClasses } from "../theme/themeConfig";
 
 interface RoadmapSectionProps {
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
 }
 
 const RoadmapSection = ({ theme }: RoadmapSectionProps) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <section className="p-6">
-      <h2 className={`text-3xl font-semibold mb-4 text-center ${classes.text}`}>Roadmap</h2>
+    <section className={`${classes.spacing.padding.large}`}>
+      <h2
+        className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.medium} ${classes.typography.textAlignCenter} ${classes.text}`}
+      >
+        Roadmap
+      </h2>
       <Card
         withDivider={false}
-        className={`${classes.background} ${classes.text} ${classes.borderPurple} ${classes.shadow} ${classes.transition} p-6 rounded-lg`}
+        className={`${classes.background} ${classes.text} ${classes.borderPurple} ${classes.shadow} ${classes.transition} ${classes.spacing.padding.large} ${classes.spacing.rounded.large}`}
       >
-        <ul className="list-disc pl-6">
-          <li>Build a task management app using React Native and Firebase</li>
-          <li>Develop a personal blog with a Markdown editor</li>
-          <li>Create an AI-powered chatbot for FAQ automation</li>
+        <ul
+          className={`list-disc ${classes.spacing.paddingLeft.large} ${classes.textSizes.body}`}
+        >
+          <li className={`${classes.typography.marginBottom.small}`}>
+            Build a task management app using React Native and Firebase
+          </li>
+          <li className={`${classes.typography.marginBottom.small}`}>
+            Develop a personal blog with a Markdown editor
+          </li>
+          <li className={`${classes.typography.marginBottom.small}`}>
+            Create an AI-powered chatbot for FAQ automation
+          </li>
           <li>Work on a Flutter app for local event ticket booking</li>
         </ul>
       </Card>

@@ -1,27 +1,41 @@
-import { Card, Button } from '@rewind-ui/core';
-import { getThemeClasses } from '../theme/themeConfig';
+import { Card, Button } from "@rewind-ui/core";
+import { getThemeClasses } from "../theme/themeConfig";
 
 interface ProjectCardProps {
   title: string;
   technologies: string;
   features: string;
-  link?: string; // Optional link prop for completed projects
-  theme: 'dark' | 'light'; // Theme prop
+  link?: string;
+  theme: "dark" | "light";
 }
 
-const ProjectCard = ({ title, technologies, features, link, theme }: ProjectCardProps) => {
-  const classes = getThemeClasses(theme); // Use theme to get the appropriate classes
+const ProjectCard = ({
+  title,
+  technologies,
+  features,
+  link,
+  theme,
+}: ProjectCardProps) => {
+  const classes = getThemeClasses(theme);
 
   return (
     <Card
       withDivider={false}
-      className={`${classes.background} ${classes.text} ${classes.borderPurple} ${classes.shadow} ${classes.transition} p-6 rounded-lg min-w-[250px]`}
+      className={`${classes.background} ${classes.text} ${classes.borderPurple} ${classes.shadow} ${classes.transition} ${classes.spacing.padding.large} ${classes.spacing.rounded.large} min-w-[250px]`}
     >
-      <h3 className="font-bold text-lg">{title}</h3>
-      <p className="mt-2">
+      <h3
+        className={`${classes.textSizes.subheading} ${classes.typography.fontBold}`}
+      >
+        {title}
+      </h3>
+      <p
+        className={`${classes.typography.marginTop.medium}  ${classes.textSizes.body}`}
+      >
         <strong>Technologies:</strong> {technologies}
       </p>
-      <p className="mt-2">
+      <p
+        className={`${classes.typography.marginTop.medium} ${classes.textSizes.body}`}
+      >
         <strong>Features:</strong> {features}
       </p>
       {link && (
@@ -31,11 +45,13 @@ const ProjectCard = ({ title, technologies, features, link, theme }: ProjectCard
           target="_blank"
           rel="noopener noreferrer"
           variant="primary"
-          color="purple"
-          className="mt-4"
+          color="green"
+          className={`${classes.typography.marginTop.large}`}
           radius="full"
           shadow="lg"
           shadowColor="black"
+          tone="outline"
+          withRing={false}
         >
           Learn More
         </Button>

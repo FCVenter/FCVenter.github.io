@@ -9,29 +9,41 @@ const HobbiesSection = ({ theme }: HobbiesSectionProps) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <section className="hobbies p-8 flex justify-center">
+    <section
+      className={`hobbies ${classes.spacing.padding.extraLarge} flex justify-center`}
+    >
       <div className="w-full max-w-lg">
         <h2
-          className={`text-3xl font-semibold mb-4 text-center ${classes.text}`}
+          className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.medium} ${classes.typography.textAlignCenter} ${classes.text}`}
         >
           Hobbies and Interests
         </h2>
         <Card
           bordered={true}
-          className={`${classes.background} ${classes.text} ${classes.borderPurple} ${classes.shadow} ${classes.transition} p-6`}
+          className={`${classes.background} ${classes.text} ${classes.borderPurple} ${classes.shadow} ${classes.transition} ${classes.spacing.padding.large}`}
           style={{
-            minWidth: "300px", // Ensures the card doesn't get too narrow
-            margin: "0 auto", // Centers the card within its container
+            minWidth: "300px",
+            margin: "0 auto",
           }}
         >
-          <ul className="list-disc pl-6 text-xl">
-            <li className="mb-2">
+          <ul
+            className={`list-disc ${classes.spacing.paddingLeft.large} ${classes.textSizes.body}`}
+          >
+            <li className={`${classes.typography.marginBottom.small}`}>
               Exploring new technologies in software development
             </li>
-            <li className="mb-2">Watching and analysing football tactics</li>
-            <li className="mb-2">Reading and watching Science Fiction</li>
-            <li className="mb-2">Socialising and meeting new people</li>
-            <li className="mb-2">Playing video games</li>
+            <li className={`${classes.typography.marginBottom.small}`}>
+              Watching and analysing football tactics
+            </li>
+            <li className={`${classes.typography.marginBottom.small}`}>
+              Reading and watching Science Fiction
+            </li>
+            <li className={`${classes.typography.marginBottom.small}`}>
+              Socialising and meeting new people
+            </li>
+            <li className={`${classes.typography.marginBottom.small}`}>
+              Playing video games
+            </li>
             <li>Hiking and enjoying nature</li>
           </ul>
         </Card>
