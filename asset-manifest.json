@@ -1,13 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd746bbc.css",
-    "main.js": "/static/js/main.e381828c.js",
+    "main.css": "/static/css/main.6599161f.css",
+    "main.js": "/static/js/main.fa1e9499.js",
+    "static/media/orchestra.jpg": "/static/media/orchestra.aa3a1839ddd3138eecb6.jpg",
+    "static/media/ocean-view.jpg": "/static/media/ocean-view.ec6d57c50ae62cce0392.jpg",
+    "static/media/mountains-through-car-window.jpg": "/static/media/mountains-through-car-window.a6b196569d11b2117a0d.jpg",
+    "static/media/open-road.jpg": "/static/media/open-road.59893480d08073f76e15.jpg",
+    "static/media/interstellar-blackhole.jpg": "/static/media/interstellar-blackhole.e8fd1dd2ec0b96f60260.jpg",
+    "static/media/ghost-of-tsushima.jpeg": "/static/media/ghost-of-tsushima.19e47848afcafbf723ce.jpeg",
+    "static/media/spiderman2.jpeg": "/static/media/spiderman2.11927c1e1197b1a5cfcf.jpeg",
+    "static/media/hamilton-panther.jpg": "/static/media/hamilton-panther.44899914a201ca2b58b3.jpg",
+    "static/media/charles-ferrari-top-view.jpg": "/static/media/charles-ferrari-top-view.b326e11c5c2286107748.jpg",
+    "static/media/martin-odegaard.jpg": "/static/media/martin-odegaard.dff0d516a8d00a55c9b9.jpg",
+    "static/media/rwc-2023-final-whistle.jpg": "/static/media/rwc-2023-final-whistle.5d60ebc6f198902affcc.jpg",
+    "static/media/jon-bellion.jpg": "/static/media/jon-bellion.b483ded4ff11dea51afb.jpg",
+    "static/media/hamilton-cockpit.jpg": "/static/media/hamilton-cockpit.ee4e79dccfc3ba95b53c.jpg",
+    "static/media/football-tactics.jpg": "/static/media/football-tactics.be6a04a3d5efaf2fec94.jpg",
+    "static/media/people-silhouette.jpeg": "/static/media/people-silhouette.454faf3d9589d834d18d.jpeg",
     "index.html": "/index.html",
-    "main.cd746bbc.css.map": "/static/css/main.cd746bbc.css.map",
-    "main.e381828c.js.map": "/static/js/main.e381828c.js.map"
+    "main.6599161f.css.map": "/static/css/main.6599161f.css.map",
+    "main.fa1e9499.js.map": "/static/js/main.fa1e9499.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd746bbc.css",
-    "static/js/main.e381828c.js"
+    "static/css/main.6599161f.css",
+    "static/js/main.fa1e9499.js"
   ]
 }
