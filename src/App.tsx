@@ -54,7 +54,9 @@ const App = () => {
         >
           <SkillsSection theme={theme} />
           <EducationSection theme={theme} />
+          <SkillsChart theme={theme} />
           <ProjectsSection theme={theme} />
+          <CaseStudiesSection theme={theme} />
           <ContactSection theme={theme} />
           <Footer theme={theme} />
         </Tabs.Content>
@@ -65,10 +67,8 @@ const App = () => {
         >
           <div className="space-y-8 p-6">
             <IntroSection theme={theme} />
+            <RoadmapSection theme={theme} />
             <GallerySection theme={theme} />
-            <HobbiesSection theme={theme} />
-            <SkillsChart theme={theme} />
-            <CaseStudiesSection theme={theme} />
             <FeedbackSection theme={theme} />
           </div>
         </Tabs.Content>

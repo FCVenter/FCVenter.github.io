@@ -30,3 +30,65 @@ body.dark {
   display: none;  /* Chrome, Safari, and Opera */
 }
 
+/* Global Scrollbar Styles */
+
+/* For WebKit Browsers (Chrome, Safari, Edge) */
+.gallery::-webkit-scrollbar {
+  height: 12px;
+  /* Thickness of the scrollbar */
+}
+
+.gallery::-webkit-scrollbar-track {
+  background: transparent;
+  /* Optional: Background of the scrollbar track */
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background-color: #a855f7;
+  /* Purple color */
+  border-radius: 6px;
+  border: 3px solid transparent;
+  /* Adds padding around the thumb */
+  background-clip: padding-box;
+  /* Ensures the border doesn't affect the thumb */
+}
+
+/* For Firefox */
+.gallery {
+  scrollbar-width: thin;
+  /* Makes the scrollbar thinner */
+  scrollbar-color: #a855f7 transparent;
+  /* Thumb color and track color */
+}
+
+/* styles.css */
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #00cc88;
+  border-radius: 50%;
+}
+
+.content {
+  margin-left: 60px;
+}
+
+.content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.content p {
+  font-size: 1rem;
+  color: #666;
+}

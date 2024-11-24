@@ -1,75 +1,14 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+// /components/ProjectsSection.tsx
+import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { getThemeClasses } from "../theme/themeConfig";
+import { motion } from "framer-motion";
+import { fadeInUp, fadeIn } from "../theme/animations";
+import useDragScroll from "../theme/useDragScroll"; // Updated import
 
 interface ProjectsSectionProps {
   theme: "dark" | "light";
 }
-
-interface DragStart {
-  x: number;
-  scrollLeft: number;
-}
-
-const useDragScroll = (ref: React.RefObject<HTMLDivElement>) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState<DragStart>({
-    x: 0,
-    scrollLeft: 0,
-  });
-
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent) => {
-      if (!ref.current) return;
-
-      const rect = ref.current.getBoundingClientRect();
-      setIsDragging(true);
-      setDragStart({
-        x: e.clientX - rect.left,
-        scrollLeft: ref.current.scrollLeft,
-      });
-
-      e.preventDefault();
-    },
-    [ref]
-  );
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      if (!isDragging || !ref.current) return;
-
-      const rect = ref.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const walk = (x - dragStart.x) * 1.5;
-      ref.current.scrollLeft = dragStart.scrollLeft - walk;
-    },
-    [isDragging, dragStart, ref]
-  );
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
-
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-    } else {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDragging, handleMouseMove, handleMouseUp]);
-
-  return {
-    isDragging,
-    handleMouseDown,
-  };
-};
 
 const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
   const completedRef = useRef<HTMLDivElement>(null);
@@ -155,33 +94,44 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
   ];
 
   return (
-    <section
+    <motion.section
       className={`projects ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={fadeInUp}
     >
-      <h2
-        className={`${classes.textSizes.heading} ${classes.typography.fontSemibold}`}
+      <motion.h2
+        className={`${classes.spacing.padding.extraLarge} ${classes.textSizes.heading} ${classes.typography.fontSemibold}`}
+        variants={fadeInUp}
+        initial="hidden"
+        animate="visible"
       >
         Projects
-      </h2>
+      </motion.h2>
 
       {/* Completed Projects Section */}
-      <h3
+      <motion.h3
         className={`${classes.textSizes.subheading} ${classes.typography.marginTop.extraLarge}`}
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
       >
         Completed
-      </h3>
-      <div
+      </motion.h3>
+      <motion.div
         ref={completedRef}
         className={`overflow-x-auto flex ${classes.spacing.spaceX.medium} ${classes.typography.marginTop.large} no-scrollbar cursor-grab ${classes.spacing.paddingX.medium}`}
         onMouseDown={completedHandlers.handleMouseDown}
-        style={{
-          cursor: completedHandlers.isDragging ? "grabbing" : "grab",
-          userSelect: "none",
-        }}
+        variants={fadeIn}
+        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+        initial="hidden"
+        animate="visible"
       >
         {completedProjects.map((project, index) => (
           <ProjectCard
             theme={theme}
+            minHeight="470px"
             key={index}
             title={project.title}
             technologies={project.technologies}
@@ -189,22 +139,25 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
             link={project.link}
           />
         ))}
-      </div>
+      </motion.div>
 
       {/* Current Projects Section */}
-      <h3
+      <motion.h3
         className={`${classes.textSizes.subheading} ${classes.typography.marginTop.extraLarge}`}
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
       >
         Current
-      </h3>
-      <div
+      </motion.h3>
+      <motion.div
         ref={currentRef}
         className={`overflow-x-auto flex ${classes.spacing.spaceX.medium} ${classes.typography.marginTop.large} no-scrollbar cursor-grab ${classes.spacing.paddingX.medium}`}
         onMouseDown={currentHandlers.handleMouseDown}
-        style={{
-          cursor: currentHandlers.isDragging ? "grabbing" : "grab",
-          userSelect: "none",
-        }}
+        variants={fadeIn}
+        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+        initial="hidden"
+        animate="visible"
       >
         {currentProjects.map((project, index) => (
           <ProjectCard
@@ -215,8 +168,8 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
             features={project.features}
           />
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

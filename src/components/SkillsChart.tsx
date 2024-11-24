@@ -1,4 +1,6 @@
+// SkillsSection.tsx
 import { getThemeClasses } from "../theme/themeConfig";
+import { motion } from "framer-motion";
 
 interface Skill {
   name: string;
@@ -24,18 +26,58 @@ const skills: Skill[] = [
 const SkillsSection = ({ theme }: SkillsSectionProps) => {
   const classes = getThemeClasses(theme);
 
+  // Animation variants for the container
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  // Animation variants for each skill item
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  // Animation variants for the progress bar
+  const progressVariants = (percentage: number) => ({
+    hidden: { width: 0 },
+    visible: { width: `${percentage}%` },
+  });
+
   return (
-    <section className={`skills ${classes.spacing.padding.extraLarge}`}>
-      <h2
+    <motion.section
+      className={`skills ${classes.spacing.padding.extraLarge}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+    >
+      <motion.h2
         className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large} ${classes.typography.textAlignCenter} ${classes.text}`}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+        }}
       >
         Skills
-      </h2>
+      </motion.h2>
       <div className="space-y-6">
         {skills.map((skill) => (
-          <div
+          <motion.div
             key={skill.name}
             className={`flex flex-col sm:flex-row items-center ${classes.spacing.spaceY.small} sm:space-y-0 ${classes.spacing.spaceX.medium}`}
+            variants={itemVariants}
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
+            }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
             {/* Skill Name */}
             <div className="w-full sm:w-1/3 text-left">
@@ -56,10 +98,14 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
                 aria-valuemax={100}
                 aria-label={`${skill.name} proficiency`}
               >
-                <div
-                  className={`${classes.progressColor} h-full rounded-full transition-width duration-700`}
-                  style={{ width: `${skill.percentage}%` }}
-                ></div>
+                <motion.div
+                  className={`${classes.progressColor} h-full rounded-full`}
+                  variants={progressVariants(skill.percentage)}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                ></motion.div>
               </div>
             </div>
 
@@ -71,10 +117,10 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
                 {skill.level}
               </span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

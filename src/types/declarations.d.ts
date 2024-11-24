@@ -6,3 +6,39 @@ declare interface NodeRequire {
     filter?: RegExp
   ): __WebpackModuleApi.RequireContext;
 }
+
+// declarations.d.ts
+declare function require(path: string): any;
+
+interface RequireContext {
+  keys: () => string[];
+  <T>(id: string): T;
+}
+
+declare namespace require {
+  function context(
+    directory: string,
+    useSubdirectories: boolean,
+    regExp: RegExp
+  ): RequireContext;
+}
+
+declare module "*.png" {
+  const value: string;
+  export default value;
+}
+
+declare module "*.jpg" {
+  const value: string;
+  export default value;
+}
+
+declare module "*.jpeg" {
+  const value: string;
+  export default value;
+}
+
+declare module "*.svg" {
+  const value: string;
+  export default value;
+}

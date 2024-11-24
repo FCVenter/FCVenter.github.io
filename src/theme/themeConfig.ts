@@ -6,6 +6,7 @@ export const getThemeClasses = (theme: "dark" | "light") => ({
   borderPurple: "border-purple-500",
   borderGreen: "border-green-500",
   hover: theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-200",
+  hoverText: theme === "dark" ? "hover:bg-green-700" : "hover:bg-green-700",
   shadow: "shadow-lg",
   transition: "transition-all duration-300",
   progressColor: theme === "dark" ? "bg-purple-500" : "bg-indigo-600",
@@ -38,6 +39,16 @@ export const getThemeClasses = (theme: "dark" | "light") => ({
     },
     textAlignCenter: "text-center",
     displayBlock: "block",
+
+    // New global typography styles
+    responsiveText: {
+      heading: "text-2xl sm:text-3xl md:text-4xl",
+      subheading: "text-xl sm:text-2xl md:text-3xl",
+      body: "text-base sm:text-lg md:text-xl",
+    },
+    responsiveFontSize: "font-size: clamp(1rem, 2.5vw, 1.5rem);",
+    textWrapping: "overflow-wrap: break-word; word-break: break-word;",
+    whiteSpace: "white-space: normal;",
   },
 
   // Spacing and sizing
@@ -47,6 +58,7 @@ export const getThemeClasses = (theme: "dark" | "light") => ({
       medium: "p-4",
       large: "p-6",
       extraLarge: "p-8",
+      xxL: "p-10",
     },
     paddingX: {
       small: "px-2",
@@ -77,3 +89,4 @@ export const getThemeClasses = (theme: "dark" | "light") => ({
     },
   },
 });
+
