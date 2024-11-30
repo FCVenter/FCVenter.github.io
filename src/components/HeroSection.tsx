@@ -14,8 +14,8 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <motion.section
-      className={`hero bg-gradient-to-br from-purple-600 to-green-500 ${classes.text} p-8 ${classes.typography.textAlignCenter}`}
+    <motion.section id="hero"
+      className={`hero ${classes.gradient} ${classes.text} p-8 ${classes.typography.textAlignCenter}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -80,7 +80,7 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
             <Button
               onClick={toggleTheme}
               variant="secondary"
-              color="purple"
+              color="green"
               className="flex items-center justify-center p-2"
             >
               {theme === "dark" ? <FaSun /> : <FaMoon />}
@@ -106,7 +106,7 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
           target="_blank"
           rel="noopener noreferrer"
           variant="primary"
-          color="purple"
+          color="green"
           shadow="base"
           className="w-auto flex items-center justify-center p-2" // Ensured w-auto
         >

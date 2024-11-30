@@ -40,7 +40,7 @@ const CaseStudiesSection = ({ theme }: CaseStudiesSectionProps) => {
   };
 
   return (
-    <motion.section
+    <motion.section id="case-studies"
       className={`${classes.spacing.padding.large}`}
       initial="hidden"
       whileInView="visible"

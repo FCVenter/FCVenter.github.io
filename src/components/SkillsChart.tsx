@@ -51,7 +51,7 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
   });
 
   return (
-    <motion.section
+    <motion.section id="skillsRating"
       className={`skills ${classes.spacing.padding.extraLarge}`}
       initial="hidden"
       whileInView="visible"
@@ -65,7 +65,7 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
           visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
         }}
       >
-        Skills
+        Skills Ratings
       </motion.h2>
       <div className="space-y-6">
         {skills.map((skill) => (
@@ -103,8 +103,8 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
                   variants={progressVariants(skill.percentage)}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 2.0, ease: "easeOut" }}
                 ></motion.div>
               </div>
             </div>

@@ -94,7 +94,7 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
   ];
 
   return (
-    <motion.section
+    <motion.section id="projects"
       className={`projects ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
       initial="hidden"
       whileInView="visible"
@@ -162,6 +162,7 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
         {currentProjects.map((project, index) => (
           <ProjectCard
             theme={theme}
+            minHeight="300px"
             key={index}
             title={project.title}
             technologies={project.technologies}

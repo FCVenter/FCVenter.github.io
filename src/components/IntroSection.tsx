@@ -64,7 +64,7 @@ const IntroSection = ({ theme }: IntroSectionProps) => {
   };
 
   return (
-    <motion.section
+    <motion.section id="about-me"
       className={`${classes.spacing.padding.large}`}
       initial="hidden"
       animate="visible"

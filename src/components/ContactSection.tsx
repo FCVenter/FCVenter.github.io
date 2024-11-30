@@ -9,7 +9,7 @@ const ContactSection = ({ theme }: ContactSectionProps) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <section
+    <section id="contact"
       className={`contact ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
     >
       <h2

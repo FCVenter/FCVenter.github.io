@@ -11,6 +11,7 @@ export const getThemeClasses = (theme: "dark" | "light") => ({
   transition: "transition-all duration-300",
   progressColor: theme === "dark" ? "bg-purple-500" : "bg-indigo-600",
   progressBackground: theme === "dark" ? "bg-gray-700" : "bg-gray-300",
+  gradient: "bg-gradient-to-br from-green-500 to-purple-600",
 
   // Responsive text sizes
   textSizes: {

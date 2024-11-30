@@ -1,24 +1,17 @@
-import { Card } from "@rewind-ui/core";
-import { getThemeClasses } from "../theme/themeConfig";
+// SkillsSection.tsx
+import React from "react";
+import CustomCard from "./CustomCard";
 import { motion } from "framer-motion";
-import { fadeInUp, fadeIn, hoverEffect } from "../theme/animations";
+import { getThemeClasses } from "../theme/themeConfig";
+
+interface SkillsSectionProps {
+  theme: "dark" | "light";
+}
 
 const skills: {
-  [key in
-    | "Languages"
-    | "Frameworks"
-    | "Technologies"
-    | "Soft Skills"]: string[];
+  [key in "Languages" | "Frameworks" | "Technologies" | "Soft Skills"]: string[];
 } = {
-  Languages: [
-    "Python",
-    "C#",
-    "C/C++",
-    "Java",
-    "JavaScript",
-    "Pascal",
-    "CSS/HTML",
-  ],
+  Languages: ["Python", "C#", "C/C++", "Java", "JavaScript", "Pascal", "CSS/HTML"],
   Frameworks: [
     "React",
     "Angular",
@@ -53,11 +46,7 @@ const skills: {
   ],
 };
 
-interface SkillsSectionProps {
-  theme: "dark" | "light";
-}
-
-const SkillsSection = ({ theme }: SkillsSectionProps) => {
+const SkillsSection: React.FC<SkillsSectionProps> = ({ theme }) => {
   const classes = getThemeClasses(theme);
 
   // Animation variants for the section container
@@ -80,23 +69,24 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
     },
   };
 
   return (
-    <motion.section
-      className={`skills p-8 ${classes.typography.textAlignCenter}`}
+    <motion.section id="skills"
+      className={`skills p-8 ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={sectionVariants}
     >
       <motion.h2
-        className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large} ${classes.text}`}
+        className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large}`}
         style={{
           overflowWrap: "break-word",
           wordBreak: "break-word",
@@ -111,69 +101,40 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
         Skills
       </motion.h2>
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 items-stretch"
         variants={sectionVariants}
       >
-        {Object.keys(skills).map((category) => (
+        {Object.entries(skills).map(([category, skillList]) => (
           <motion.div
             key={category}
             variants={cardVariants}
             whileHover="hover"
-            transition={{ type: "spring", stiffness: 300 }}
-            className="flex justify-center"
+            className="flex"
           >
-            <motion.div className={`w-full h-full`} variants={hoverEffect}>
-              <Card
-                className={`min-h-[450px] p-6 bg-gradient-to-br from-green-500 to-purple-600 rounded-lg shadow-lg ${classes.transition} ${classes.background} ${classes.borderGreen} ${classes.shadow} flex flex-col justify-start`}
-                shadow="base"
-                bordered={true}
-                radius="base"
+            <CustomCard
+              theme={theme}
+              bordered={true} // No border for skill cards
+              borderColour={theme === "dark" ? "gray-700" : "blue-50"}
+              color={theme === "dark" ? "gray-700" : "blue-50"} // Dynamic color based on theme
+              radius="md" // Medium border radius
+              shadow="lg" // Larger shadow for emphasis
+              size="lg" // Increased padding for skill cards
+              withDivider={true} // Add dividers between list items
+              className={`w-full ${classes.gradient}`}
+            >
+              <h3
+                className={`${classes.textSizes.heading} text-white ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large}`}
               >
-                <motion.h3
-                  className={`${classes.textSizes.subheading} ${classes.typography.fontBold} ${classes.typography.marginBottom.medium} text-white`}
-                  style={{
-                    overflowWrap: "break-word",
-                    wordBreak: "break-word",
-                    whiteSpace: "normal",
-                    fontSize: "clamp(1.25rem, 3vw, 2rem)", // Responsive size from global config
-                  }}
-                  variants={fadeIn}
-                >
-                  {category}
-                </motion.h3>
-                <motion.ul
-                  className={`${classes.textSizes.body} text-white ${classes.spacing.spaceY}`}
-                  style={{
-                    overflowWrap: "break-word",
-                    wordBreak: "break-word",
-                    whiteSpace: "normal",
-                  }}
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                      opacity: 1,
-                      transition: {
-                        staggerChildren: 0.1,
-                      },
-                    },
-                  }}
-                >
-                  {skills[category as keyof typeof skills].map((skill) => (
-                    <motion.li
-                      key={skill}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className="list-none"
-                    >
-                      {skill}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </Card>
-            </motion.div>
+                {category}
+              </h3>
+              <ul
+                className={`list-none list-inside text-white ${classes.spacing.spaceY.small} ${classes.textSizes.body} ${classes.typography.fontRegular}`}
+              >
+                {skillList.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
+              </ul>
+            </CustomCard>
           </motion.div>
         ))}
       </motion.div>

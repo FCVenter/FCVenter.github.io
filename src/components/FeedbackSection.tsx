@@ -53,7 +53,7 @@ const FeedbackSection = ({ theme }: FeedbackSectionProps) => {
   };
 
   return (
-    <section>
+    <section id="feedback">
       <h2
         className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.medium} ${classes.typography.textAlignCenter} ${classes.text}`}
       >
