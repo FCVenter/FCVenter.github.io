@@ -1,4 +1,5 @@
-// SkillsSection.tsx
+// /components/SkillsChart.tsx
+
 import { getThemeClasses } from "../theme/themeConfig";
 import { motion } from "framer-motion";
 
@@ -8,7 +9,7 @@ interface Skill {
   percentage: number;
 }
 
-interface SkillsSectionProps {
+interface SkillsChartProps {
   theme: "dark" | "light";
 }
 
@@ -23,7 +24,7 @@ const skills: Skill[] = [
   { name: "Collaboration / Teamwork", level: "Excellent", percentage: 95 },
 ];
 
-const SkillsSection = ({ theme }: SkillsSectionProps) => {
+const SkillsChart = ({ theme }: SkillsChartProps) => {
   const classes = getThemeClasses(theme);
 
   // Animation variants for the container
@@ -51,14 +52,17 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
   });
 
   return (
-    <motion.section id="skillsRating"
-      className={`skills ${classes.spacing.padding.extraLarge}`}
+    <motion.section
+      id="skillsRating"
+      className={`skills ${classes.spacing.padding.extraLarge} w-full`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
+      aria-labelledby="skills-chart-heading"
     >
       <motion.h2
+        id="skills-chart-heading"
         className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large} ${classes.typography.textAlignCenter} ${classes.text}`}
         variants={{
           hidden: { opacity: 0, y: 50 },
@@ -124,4 +128,4 @@ const SkillsSection = ({ theme }: SkillsSectionProps) => {
   );
 };
 
-export default SkillsSection;
+export default SkillsChart;

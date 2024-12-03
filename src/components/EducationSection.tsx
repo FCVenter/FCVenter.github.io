@@ -1,4 +1,5 @@
-// EducationSection.tsx
+// /components/EducationSection.tsx
+
 import React from "react";
 import CustomCard from "./CustomCard";
 import { motion } from "framer-motion";
@@ -54,19 +55,25 @@ const EducationSection: React.FC<EducationSectionProps> = ({ theme }) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <motion.section id="education"
+    <motion.section
+      id="education"
       className={`education ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
       transition={{ duration: 0.8 }}
+      aria-labelledby="education-heading"
     >
       <h2
+        id="education-heading"
         className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large}`}
       >
         Education
       </h2>
-      <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" variants={containerVariants}>
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        variants={containerVariants}
+      >
         {educationData.map((edu, index) => (
           <motion.div
             key={index}
@@ -77,7 +84,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({ theme }) => {
             <CustomCard
               theme={theme}
               bordered={true} // Ensures border is added
-              borderColour={classes.borderGreen} 
+              borderColour={classes.borderGreen}
               color={theme} // Dynamic color based on theme
               radius="lg" // Example: larger border radius
               shadow="md" // Medium shadow
@@ -85,15 +92,27 @@ const EducationSection: React.FC<EducationSectionProps> = ({ theme }) => {
               withDivider={false} // No dividers inside the card
               className={`h-full ${classes.shadow}`}
             >
-              <h3 className={`${classes.textSizes.subheading} ${classes.text} ${classes.typography.fontBold}`}>{edu.degree}</h3>
-              <p className={`${classes.textSizes.body} ${classes.text} ${classes.typography.fontRegular}`}>{edu.institution}</p>
-              <p className={`italic ${classes.textSizes.small} ${classes.mutedText} ${classes.typography.fontRegular}`}>{edu.years}</p>
+              <h3
+                className={`${classes.textSizes.subheading} ${classes.text} ${classes.typography.fontBold}`}
+              >
+                {edu.degree}
+              </h3>
+              <p
+                className={`${classes.textSizes.body} ${classes.text} ${classes.typography.fontRegular}`}
+              >
+                {edu.institution}
+              </p>
+              <p
+                className={`italic ${classes.textSizes.small} ${classes.mutedText} ${classes.typography.fontRegular}`}
+              >
+                {edu.years}
+              </p>
             </CustomCard>
           </motion.div>
         ))}
       </motion.div>
     </motion.section>
-  );  
+  );
 };
 
 export default EducationSection;

@@ -1,4 +1,5 @@
-// SkillsSection.tsx
+// /components/SkillsSection.tsx
+
 import React from "react";
 import CustomCard from "./CustomCard";
 import { motion } from "framer-motion";
@@ -9,9 +10,21 @@ interface SkillsSectionProps {
 }
 
 const skills: {
-  [key in "Languages" | "Frameworks" | "Technologies" | "Soft Skills"]: string[];
+  [key in
+    | "Languages"
+    | "Frameworks"
+    | "Technologies"
+    | "Soft Skills"]: string[];
 } = {
-  Languages: ["Python", "C#", "C/C++", "Java", "JavaScript", "Pascal", "CSS/HTML"],
+  Languages: [
+    "Python",
+    "C#",
+    "C/C++",
+    "Java",
+    "JavaScript",
+    "Pascal",
+    "CSS/HTML",
+  ],
   Frameworks: [
     "React",
     "Angular",
@@ -78,14 +91,17 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ theme }) => {
   };
 
   return (
-    <motion.section id="skills"
+    <motion.section
+      id="skills"
       className={`skills p-8 ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={sectionVariants}
+      aria-labelledby="skills-heading"
     >
       <motion.h2
+        id="skills-heading"
         className={`${classes.textSizes.heading} ${classes.typography.fontSemibold} ${classes.typography.marginBottom.large}`}
         style={{
           overflowWrap: "break-word",
@@ -113,9 +129,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ theme }) => {
           >
             <CustomCard
               theme={theme}
-              bordered={true} // No border for skill cards
-              borderColour={theme === "dark" ? "gray-700" : "blue-50"}
-              color={theme === "dark" ? "gray-700" : "blue-50"} // Dynamic color based on theme
+              bordered={true} // Border applied based on theme
+              borderColour={
+                theme === "dark" ? "border-gray-700" : "border-blue-50"
+              }
+              color={theme === "dark" ? "bg-gray-800" : "bg-blue-50"} // Dynamic color based on theme
               radius="md" // Medium border radius
               shadow="lg" // Larger shadow for emphasis
               size="lg" // Increased padding for skill cards

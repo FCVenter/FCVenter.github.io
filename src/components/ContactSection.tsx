@@ -1,3 +1,6 @@
+// /components/ContactSection.tsx
+
+import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { getThemeClasses } from "../theme/themeConfig";
 
@@ -9,10 +12,13 @@ const ContactSection = ({ theme }: ContactSectionProps) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <section id="contact"
+    <section
+      id="contact"
       className={`contact ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
+      aria-labelledby="contact-heading"
     >
       <h2
+        id="contact-heading"
         className={`${classes.textSizes.heading} ${classes.typography.fontSemibold}`}
       >
         Contact
@@ -23,17 +29,18 @@ const ContactSection = ({ theme }: ContactSectionProps) => {
         <p
           className={`flex items-center justify-center ${classes.spacing.spaceX.small}  ${classes.textSizes.body}`}
         >
-          <FaPhone /> <span>+27 82 729 1986</span>
+          <FaPhone aria-hidden="true" /> <span>+27 82 729 1986</span>
         </p>
         <p
           className={`flex items-center justify-center ${classes.spacing.spaceX.small}  ${classes.textSizes.body}`}
         >
-          <FaEnvelope /> <span>fcventer17@gmail.com</span>
+          <FaEnvelope aria-hidden="true" /> <span>fcventer17@gmail.com</span>
         </p>
         <p
           className={`flex items-center justify-center ${classes.spacing.spaceX.small}  ${classes.textSizes.body}`}
         >
-          <FaMapMarkerAlt /> <span>Potchefstroom, South Africa</span>
+          <FaMapMarkerAlt aria-hidden="true" />{" "}
+          <span>Potchefstroom, South Africa</span>
         </p>
       </div>
     </section>

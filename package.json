@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://FCVenter.github.io/",
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@material-tailwind/react": "^2.1.10",
+    "@mui/material": "^6.1.9",
     "@rewind-ui/core": "^0.20.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -17,6 +21,7 @@
     "framer-motion": "^11.11.17",
     "motion": "^11.11.17",
     "phosphor-react": "^1.4.1",
+    "popmotion": "^11.0.5",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",

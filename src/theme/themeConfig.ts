@@ -1,3 +1,4 @@
+// themeConfig.ts
 export const getThemeClasses = (theme: "dark" | "light") => ({
   // Theme-based styles
   background: theme === "dark" ? "bg-gray-900" : "bg-softBeige",
@@ -90,4 +91,3 @@ export const getThemeClasses = (theme: "dark" | "light") => ({
     },
   },
 });
-

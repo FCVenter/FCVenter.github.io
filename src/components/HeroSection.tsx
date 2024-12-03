@@ -1,9 +1,9 @@
 // /components/HeroSection.tsx
+
 import { Card, Button } from "@rewind-ui/core";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { getThemeClasses } from "../theme/themeConfig";
 import { motion } from "framer-motion";
-import { fadeInUp, floating, hoverEffect } from "../theme/animations";
 
 interface HeroSectionProps {
   theme: "dark" | "light";
@@ -14,12 +14,13 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
   const classes = getThemeClasses(theme);
 
   return (
-    <motion.section id="hero"
+    <motion.section
+      id="hero"
       className={`hero ${classes.gradient} ${classes.text} p-8 ${classes.typography.textAlignCenter}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      variants={fadeInUp}
+      aria-labelledby="hero-heading"
     >
       <div
         className={`flex items-center justify-center ${classes.typography.marginBottom.large}`}
@@ -27,11 +28,9 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
         {/* Profile Card */}
         <motion.div
           className={`flex flex-col items-center p-6 rounded-lg ${classes.background} ${classes.shadow} max-w-sm`}
-          // variants={fadeInUp}
           initial="hidden"
           animate="visible"
           whileHover="hover"
-          // Merge variants to avoid duplication
           variants={{
             hidden: { opacity: 0, y: 50 },
             visible: {
@@ -44,15 +43,19 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
               boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
             },
           }}
+          role="region"
+          aria-label="Profile Information"
         >
           <motion.img
             src="./assets/me.jpg"
             alt="FC Venter"
             className="w-32 h-32 rounded-full mb-4"
-            variants={floating}
-            animate="animate"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
           />
           <motion.h1
+            id="hero-heading"
             className={`${classes.textSizes.heading} ${classes.typography.fontBold} ${classes.typography.marginBottom.medium}`}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,6 +85,7 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
               variant="secondary"
               color="green"
               className="flex items-center justify-center p-2"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
               {theme === "dark" ? <FaSun /> : <FaMoon />}
             </Button>
@@ -109,6 +113,7 @@ const HeroSection = ({ theme, toggleTheme }: HeroSectionProps) => {
           color="green"
           shadow="base"
           className="w-auto flex items-center justify-center p-2" // Ensured w-auto
+          aria-label="View My CV (opens in a new tab)"
         >
           View My CV
         </Button>

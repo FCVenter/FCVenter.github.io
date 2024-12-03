@@ -1,4 +1,5 @@
 // /components/ProjectsSection.tsx
+
 import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { getThemeClasses } from "../theme/themeConfig";
@@ -94,14 +95,17 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
   ];
 
   return (
-    <motion.section id="projects"
-      className={`projects ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
+    <motion.section
+      id="projects"
+      className={`w-full mx-auto projects ${classes.spacing.padding.extraLarge} ${classes.typography.textAlignCenter} ${classes.background} ${classes.text}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={fadeInUp}
+      aria-labelledby="projects-heading"
     >
       <motion.h2
+        id="projects-heading"
         className={`${classes.spacing.padding.extraLarge} ${classes.textSizes.heading} ${classes.typography.fontSemibold}`}
         variants={fadeInUp}
         initial="hidden"
@@ -121,12 +125,17 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
       </motion.h3>
       <motion.div
         ref={completedRef}
-        className={`overflow-x-auto flex ${classes.spacing.spaceX.medium} ${classes.typography.marginTop.large} no-scrollbar cursor-grab ${classes.spacing.paddingX.medium}`}
+        className={`w-full overflow-x-auto flex ${classes.spacing.spaceX.medium} ${classes.typography.marginTop.large} no-scrollbar cursor-grab`}
         onMouseDown={completedHandlers.handleMouseDown}
         variants={fadeIn}
-        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+        style={{
+          paddingTop: "2rem",
+          paddingBottom: "2rem",
+        }}
         initial="hidden"
         animate="visible"
+        role="region"
+        aria-label="Completed Projects"
       >
         {completedProjects.map((project, index) => (
           <ProjectCard
@@ -152,12 +161,17 @@ const ProjectsSection = ({ theme }: ProjectsSectionProps) => {
       </motion.h3>
       <motion.div
         ref={currentRef}
-        className={`overflow-x-auto flex ${classes.spacing.spaceX.medium} ${classes.typography.marginTop.large} no-scrollbar cursor-grab ${classes.spacing.paddingX.medium}`}
+        className={`w-full overflow-x-auto flex ${classes.spacing.spaceX.medium} ${classes.typography.marginTop.large} no-scrollbar cursor-grab ${classes.spacing.paddingX.medium}`}
         onMouseDown={currentHandlers.handleMouseDown}
         variants={fadeIn}
-        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+        style={{
+          paddingTop: "2rem",
+          paddingBottom: "2rem",
+        }}
         initial="hidden"
         animate="visible"
+        role="region"
+        aria-label="Current Projects"
       >
         {currentProjects.map((project, index) => (
           <ProjectCard
